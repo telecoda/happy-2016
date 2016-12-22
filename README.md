@@ -15,3 +15,7 @@ Written by @telecoda
     go get github.com/telecoda/happy-2016
     
     happy-2016
+    
+    
+    
+Using the awesome [termbox](https://github.com/nsf/termbox-go) library
