@@ -64,7 +64,7 @@ func drawMessage() {
 
 	// prepare image
 	// greetings message
-	msg1 := "Season Greetings"
+	msg1 := "Seasons Greetings"
 	msg2 := "to all the Gophers"
 	msg3 := "from @telecoda"
 
