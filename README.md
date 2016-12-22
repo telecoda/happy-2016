@@ -13,3 +13,5 @@ Written by @telecoda
 
 
     go get github.com/telecoda/happy-2016
+    
+    happy-2016
