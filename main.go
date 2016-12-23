@@ -42,7 +42,7 @@ func Init() {
 
 	// draw a tree
 	tBottom := termHeight - 2
-	tLeft := termWidth/2 - 10
+	tLeft := termWidth/2 - 9
 
 	drawTree(tLeft, tBottom)
 
