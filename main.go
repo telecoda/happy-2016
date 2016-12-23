@@ -283,7 +283,7 @@ func updateFlakes() {
 				drawing.SnowLands(int(snowflake.x), int(snowflake.y), cell)
 				// reset flake
 				snowflake.reset()
-				return
+				break
 			}
 			// check if cell below is full
 			cellBelow := drawing.GetCell(int(snowflake.x), int(snowflake.y+1))
@@ -293,7 +293,7 @@ func updateFlakes() {
 					drawing.SnowLands(int(snowflake.x), int(snowflake.y), cell)
 					// reset flake
 					snowflake.reset()
-					return
+					break
 				}
 			}
 		}
