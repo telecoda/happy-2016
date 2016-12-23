@@ -57,7 +57,6 @@ func Init() {
 }
 
 func drawMessage() {
-	//termbox.SetOutputMode(termbox.OutputGrayscale)
 	termWidth, termHeight := termbox.Size()
 	cx := termWidth / 2
 	cy := termHeight / 2
@@ -274,26 +273,30 @@ func updateFlakes() {
 		snowflake.updatePosition()
 		// if cell that snowflake overlaps is occupied
 		// increase level of snow
-		cell := drawing.GetCell(int(snowflake.x), int(snowflake.y))
+
+		// get cell in an even position
+		x := int(snowflake.x) - int(snowflake.x)%2
+		y := int(snowflake.y)
+		cell := drawing.GetCell(x, y)
 
 		if cell != nil {
 
 			if drawing.containsSnow(cell) {
 				// increase snow level in current cell
-				drawing.SnowLands(int(snowflake.x), int(snowflake.y), cell)
+				drawing.SnowLands(x, y, cell)
 				// reset flake
 				snowflake.reset()
-				break
+				continue
 			}
 			// check if cell below is full
-			cellBelow := drawing.GetCell(int(snowflake.x), int(snowflake.y+1))
+			cellBelow := drawing.GetCell(x, y+1)
 			if cellBelow != nil {
 				if drawing.containsObstacle(cellBelow) {
 					// increase snow level in current cell
-					drawing.SnowLands(int(snowflake.x), int(snowflake.y), cell)
+					drawing.SnowLands(x, y, cell)
 					// reset flake
 					snowflake.reset()
-					break
+					continue
 				}
 			}
 		}

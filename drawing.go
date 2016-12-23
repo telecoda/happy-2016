@@ -11,7 +11,8 @@ type Drawing struct {
 	drawBuf       []termbox.Cell
 }
 
-var snowFall = []rune{'▁', '▂', '▃', '▄', '▅', '▆', '▇', '█'}
+//var snowFall = []rune{'▁', '▂', '▃', '▄', '▅', '▆', '▇', '█'}
+var snowFall = []rune{'▁', '▂', '▃', '▅', '▆', '▇'}
 
 func NewDrawing(width, height int) *Drawing {
 	drawing := &Drawing{
@@ -44,9 +45,9 @@ func (d *Drawing) SnowLands(x, y int, cell *termbox.Cell) {
 	if d.isEmpty(cell) {
 
 		d.setCell(x, y, snowFall[0], termbox.ColorWhite, termbox.ColorBlack)
+		d.setCell(x+1, y, snowFall[0], termbox.ColorWhite, termbox.ColorBlack)
 	} else {
 		// find current rune.
-
 		for i := 0; i < len(snowFall); i++ {
 			if cell.Ch == snowFall[i] {
 				// use NEXT rune
@@ -60,6 +61,15 @@ func (d *Drawing) SnowLands(x, y int, cell *termbox.Cell) {
 				}
 				break
 			}
+		}
+		// update next cell
+		nextX := (x - x%2) + 1
+		nextCell := drawing.GetCell(nextX, y)
+		if nextCell != nil {
+			// copy to next cell
+			nextCell.Fg = cell.Fg
+			nextCell.Bg = cell.Bg
+			nextCell.Ch = cell.Ch
 		}
 	}
 }
